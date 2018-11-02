@@ -350,8 +350,7 @@ void iothub_client_sample_mqtt_run(void)
                     if ((!MESSAGE_COUNT || (iterator < MESSAGE_COUNT)) && (iterator<= callbackCounter))
                     {
                         EVENT_INSTANCE *thisMessage = &messages[MESSAGE_COUNT ? iterator : 0];
-
-                        sprintf_s(msgText, sizeof(msgText), "{\"deviceId\":\"AirConditionDevice_001\",\"windSpeed\":%.2f}", avgWindSpeed + (rand() % 4 + 2));
+                        sprintf_s(msgText, sizeof(msgText), "{\"temp\":%d}", (int) (avgWindSpeed + (rand() % 4 + 2)));
                         printf("Ready to Send String:%s\n",(const char*)msgText);
                         if ((thisMessage->messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)msgText, strlen(msgText))) == NULL)
                         {
